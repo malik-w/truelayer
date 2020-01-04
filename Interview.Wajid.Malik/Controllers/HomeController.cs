@@ -42,6 +42,7 @@ namespace Interview.Wajid.Malik.Controllers
             if (string.IsNullOrEmpty(error))
             {
                 var credentials = await authHttpClient.GetTokenAsync(code);
+                await authService.SaveCredentialsAsync(credentials);
                 return RedirectToAction("Authenticated");
             }
             else

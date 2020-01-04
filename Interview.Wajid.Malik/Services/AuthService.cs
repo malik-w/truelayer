@@ -1,7 +1,4 @@
 ﻿using Interview.Wajid.Malik.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Interview.Wajid.Malik.Services
@@ -9,7 +6,7 @@ namespace Interview.Wajid.Malik.Services
     public class AuthService : IAuthService
     {
         private readonly ClientConfiguration config;
-        private string token = null;
+        private Credentials credentials;
 
         public AuthService(ClientConfiguration config)
         {
@@ -23,7 +20,12 @@ namespace Interview.Wajid.Malik.Services
 
         public bool IsAuthenticated
         {
-            get { return false; }
+            get { return credentials != null; }
+        }
+
+        public async Task SaveCredentialsAsync(Credentials credentials)
+        {
+            this.credentials = credentials;
         }
     }
 }

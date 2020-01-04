@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Interview.Wajid.Malik.Models;
 using System.Threading.Tasks;
 
 namespace Interview.Wajid.Malik.Services
@@ -9,5 +7,6 @@ namespace Interview.Wajid.Malik.Services
     {
         string AuthenticationUrl { get; }
         bool IsAuthenticated { get; }
+        Task SaveCredentialsAsync(Credentials credentials);
     }
 }
