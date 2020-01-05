@@ -39,11 +39,11 @@ namespace Interview.Wajid.Malik
 
             services.AddHttpClient<IAuthHttpClient, AuthHttpClient>(client =>
             {
-                client.BaseAddress = new Uri("https://auth.truelayer.com");
+                client.BaseAddress = new Uri("https://auth.truelayer.com/");
             });
             services.AddHttpClient<IDataHttpClient, DataHttpClient>(client =>
             {
-                client.BaseAddress = new Uri("https://api.truelayer.com/data/v1");
+                client.BaseAddress = new Uri("https://api.truelayer.com/data/v1/");
             });
 
             services.AddSingleton<IAuthService, AuthService>();

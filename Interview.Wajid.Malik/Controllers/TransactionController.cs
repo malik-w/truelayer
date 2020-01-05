@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Interview.Wajid.Malik.Repositories;
+using Interview.Wajid.Malik.Services.HttpClients;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,15 +13,21 @@ namespace Interview.Wajid.Malik.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        public TransactionController()
-        {
+        private IDataHttpClient dataHttpClient;
+        private ITransactionRepository transactionRepository;
 
+        public TransactionController(IDataHttpClient dataHttpClient, ITransactionRepository transactionRepository)
+        {
+            this.dataHttpClient = dataHttpClient;
+            this.transactionRepository = transactionRepository;
         }
 
         [HttpGet]
-        public ActionResult GetAll()
+        public async Task<ActionResult> GetAll()
         {
-            return new ObjectResult(null);
+            var transactions = await dataHttpClient.GetTransactionsAsync();
+            await transactionRepository.SaveAsync(transactions);
+            return new ObjectResult(transactions);
         }
     }
 }

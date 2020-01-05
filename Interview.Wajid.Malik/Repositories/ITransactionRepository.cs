@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Interview.Wajid.Malik.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Interview.Wajid.Malik.Repositories
 {
     public interface ITransactionRepository
     {
+        Task<Dictionary<string, IEnumerable<Transaction>>> GetAsync();
+        Task SaveAsync(Dictionary<string, IEnumerable<Transaction>> transactions);
     }
 }
