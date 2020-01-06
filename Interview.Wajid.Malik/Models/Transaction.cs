@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Interview.Wajid.Malik.Models
@@ -20,13 +19,5 @@ namespace Interview.Wajid.Malik.Models
         public string TransactionType { get; set; }
         [JsonPropertyName("transaction_category")]
         public string TransactionCategory { get; set; }
-        [JsonPropertyName("transaction_classification")]
-        public IEnumerable<string> TransactionClassifications { get; set; }
-        [JsonPropertyName("merchant_name")]
-        public string MerchantName { get; set; }
-        [JsonPropertyName("running_balance")]
-        public RunningBalance RunningBalance { get; set; }
-        [JsonPropertyName("meta")]
-        public TransactionMetadata Metadata { get; set; }
     }
 }

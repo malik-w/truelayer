@@ -33,6 +33,10 @@ namespace Interview.Wajid.Malik
         {
             services.AddControllers();
 
+            var dbConfiguration = new DBConfiguration();
+            dbConfiguration.ConnectionString = Configuration.GetConnectionString("DBConnection");
+            services.Add(new ServiceDescriptor(typeof(DBConfiguration), dbConfiguration));
+
             var clientConfiguration = File.ReadAllText("secrets.json");
             var config = JsonSerializer.Deserialize<ClientConfiguration>(clientConfiguration);
             services.Add(new ServiceDescriptor(typeof(ClientConfiguration), config));
