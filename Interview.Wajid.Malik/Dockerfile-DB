@@ -1,0 +1,10 @@
+FROM mcr.microsoft.com/mssql/server:2019-latest
+
+ENV ACCEPT_EULA=Y
+ENV SA_PASSWORD=[DB_PASSWORD]
+
+COPY ./setup-db.sh .
+COPY ./setup-db.sql .
+
+CMD chmod +x ./setup-db.sh
+ENTRYPOINT ./setup-db.sh & /opt/mssql/bin/sqlservr
