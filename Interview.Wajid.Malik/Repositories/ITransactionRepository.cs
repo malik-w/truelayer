@@ -6,6 +6,7 @@ namespace Interview.Wajid.Malik.Repositories
 {
     public interface ITransactionRepository
     {
+        Task DeleteAsync();
         Task<Dictionary<string, IEnumerable<Transaction>>> GetAsync();
         Task SaveAsync(Dictionary<string, IEnumerable<Transaction>> transactions);
     }

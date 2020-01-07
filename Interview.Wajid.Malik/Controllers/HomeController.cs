@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Interview.Wajid.Malik.Models;
-using Interview.Wajid.Malik.Services;
+﻿using Interview.Wajid.Malik.Services;
 using Interview.Wajid.Malik.Services.HttpClients;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace Interview.Wajid.Malik.Controllers
 {

@@ -17,6 +17,17 @@ namespace Interview.Wajid.Malik.Repositories
             this.dbConfig = dbConfig;
         }
 
+        public async Task DeleteAsync()
+        {
+            using (var conn = new SqlConnection(dbConfig.ConnectionString))
+            using (var cmd = new SqlCommand("Transaction_Delete", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                await conn.OpenAsync();
+                await cmd.ExecuteNonQueryAsync();
+            }
+        }
+
         public async Task<Dictionary<string, IEnumerable<Transaction>>> GetAsync()
         {
             var transactions = new Dictionary<string, IEnumerable<Transaction>>();
@@ -57,13 +68,7 @@ namespace Interview.Wajid.Malik.Repositories
 
         public async Task SaveAsync(Dictionary<string, IEnumerable<Transaction>> transactions)
         {
-            using (var conn = new SqlConnection(dbConfig.ConnectionString))
-            using (var cmd = new SqlCommand("Transaction_Delete", conn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                await conn.OpenAsync();
-                await cmd.ExecuteNonQueryAsync();
-            }
+            await DeleteAsync();
 
             var transactionTable = createTransactionTableType();
 
