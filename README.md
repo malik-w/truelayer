@@ -29,7 +29,7 @@ Important: The redirect uri must be registered to `http://localhost:5000/callbac
 
 Create a password for the database user. This must be at least 8 characters and contain a mixture of uppercase letters, lowercase letters, and digits.
 
-Replace the token `[DB_PASSWORD]` with this password into the following files: `appsettings.json`, `Dockerfile-DB`, and `setup-db.sh`.
+Replace the token `[DB_PASSWORD]` with this password into the following files: `appsettings.json` (Line 11) and `Dockerfile-DB` (Lines 4, 8).
 
 #### 5. Run application
 
@@ -39,7 +39,7 @@ Open a command window in the `Interview.Wajid.Malik` folder and run the followin
 docker-compose up
 ```
 
-This builds and starts two connected services, one for the app and one for the db. This will take a few seconds to spin up.
+This builds and starts two connected services, one for the app and one for the db. This may take a few minutes to build if images need to be pulled from Docker, otherwise it should take seconds.
 
 #### 6. Authorise
 
@@ -91,4 +91,7 @@ To shut down the application and remove the containers and images, run the follo
 docker-compose down --rmi all
 ```
 
-To also remove the images
+### Notes
+
+* Currently the access token received from TrueLayer is being stored in the application memory. In practice this would probably be encrypted and stored in the database with the user id.
+* Refresh token mechanism is not yet implemented - this would be done by checking the token's expiry before any calls to the data API and calling the refresh endpoint if necessary.
