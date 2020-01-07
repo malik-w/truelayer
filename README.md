@@ -95,3 +95,5 @@ docker-compose down --rmi all
 
 * Currently the access token received from TrueLayer is being stored in the application memory. In practice this would probably be encrypted and stored in the database with the user id.
 * Refresh token mechanism is not yet implemented - this would be done by checking the token's expiry before any calls to the data API and calling the refresh endpoint if necessary.
+* When the transactions are saved in the db, any existing transactions are deleted, to allow multiple tests to be run in one session.
+* When the category values are calculated, the results are left unrounded - this could easily be amended if necessary.
