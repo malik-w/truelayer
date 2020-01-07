@@ -2,9 +2,13 @@
 
 This repository defines a .NET Core & SQL Server web application that is used to authorize with TrueLayer, read transactions from the data API and calculate some statistics for transaction categories.
 
+The application will run on port 5000 on the host machine, and the database will run on 1433.
+
 ### Instructions:
 
 > Prerequisites: Docker and cURL will be used to run and interact with this project
+
+The following instructions have been tested on Windows and macOS.
 
 #### 1. Download the source files from this repository
 
@@ -93,6 +97,7 @@ docker-compose down --rmi all
 
 ### Notes
 
+* In practice, we would avoid storing the client secret and db password in config files, these would be stored in environment variables/stored using the dotnet core secret manager and passed into Docker.
 * Currently the access token received from TrueLayer is being stored in the application memory. In practice this would probably be encrypted and stored in the database with the user id.
 * Refresh token mechanism is not yet implemented - this would be done by checking the token's expiry before any calls to the data API and calling the refresh endpoint if necessary.
 * When the transactions are saved in the db, any existing transactions are deleted, to allow multiple tests to be run in one session.
